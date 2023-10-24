@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title> studio </title>
+    <link rel="stylesheet" href="c:\Users\vansh chauhan\Desktop\studio\assets\style.css">
+   
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    Button<meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+   <style>* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+  
+  :root {
+    --purple: hsl(240, 80%, 89%);
+    --pink: hsl(0, 59%, 94%);
+    --light-bg: hsl(204, 37%, 92%);
+    --light-gray-bg: hsl(0, 0%, 94%);
+    --white: hsl(0, 0%, 100%);
+    --dark: hsl(0, 0%, 7%);
+    --text-gray: hsl(0, 0%, 30%);
+  }
+  
+  body {
+    background: var(--light-bg);
+    font-family: "Space Grotesk", sans-serif;
+    color: var(--dark);
+  }
+  
+  h3 {
+    font-size: 1.5em;
+    font-weight: 700;
+  }
+  
+  p {
+    font-size: 1em;
+    line-height: 1.7;
+    font-weight: 300;
+    color: var(--text-gray);
+  }
+  
+  .description {
+    white-space: wrap;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .wrap {
+    display: flex;
+    justify: space-between;
+    align-items: stretch;
+    width: 100%;
+    gap: 24px;
+    padding: 24px;
+    flex-wrap: wrap;
+  }
+  
+  .box {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    position: relative;
+    padding: 24px;
+    background: #fff;
+    border-radius: 20px;
+  }
+  
+  .box-top {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    /* gap: 3px; */
+    margin-bottom: -6px;
+}
+  
+  .box-image {
+    width: 8vw;
+    margin-left: 66px;
+    height: 117px;
+    object-fit: cover;
+    object-position: 50% 20%;
+}
+  
+  .title-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .box-title {
+    /* border-left: -9px solid var(--purple); */
+    padding-left: 102px;
+    margin-top: -10px;
+    font-weight: 100;
+}
+  
+  .user-follow-info {
+    color: hsl(0, 0%, 60%);
+  }
+  
+  .button {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: auto;
+    padding: 16px;
+    color: #000;
+    background: transparent;
+    box-shadow: 0px 0px 0px 1px black inset;
+    transition: background 0.4s ease;
+  }
+  
+  .button:hover {
+    background: var(--purple);
+  }
+  
+  .fill-one {
+    background: var(--light-bg);
+  }
+  
+  .fill-two {
+    background: var(--pink);
+  }
+  
+  /* RESPONSIVE QUERIES */
+  
+  @media (min-width: 320px) {
+    .title-flex {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: start;
+    }
+    .user-follow-info {
+      margin-top: 6px;
+    }
+  }
+  
+  @media (min-width: 460px) {
+    .title-flex {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: start;
+    }
+    .user-follow-info {
+      margin-top: 6px;
+    }
+  }
+  
+  @media (min-width: 640px) {
+    .box {
+      flex-basis: calc(50% - 12px);
+    }
+    .title-flex {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: start;
+    }
+    .user-follow-info {
+      margin-top: 6px;
+    }
+  }
+  
+  @media (min-width: 840px) {
+    .title-flex {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: start;
+    }
+    .user-follow-info {
+      margin-top: 6px;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .box {
+      flex-basis: calc(33.3% - 16px);
+    }
+    .title-flex {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: start;
+    }
+    .user-follow-info {
+      margin-top: 6px;
+    }
+  }
+  
+  @media (min-width: 1100px) {
+    .box {
+      flex-basis: calc(25% - 18px);
+    }
+  }
+  .icons-edit{
+    margin-left: 180px;
+  }
+  .aroow-img {
+    height: 34px;
+    width: 33px;
+    margin-left: 13px;
+    cursor:pointer;
+    /* padding-top: 9px; */
+}
+.wed-white{
+    background-color: white;
+}
+</style>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bxl-c-plus-plus icon'></i>
+        <div class="logo_name"> pic studio pro</div>
+        <i class='bx bx-menu' id="btn" ></i> 
+    </div>
+    <ul class="nav-list">
+      
+      <li>
+        <a href="file:///C:/Users/vansh%20chauhan/Desktop/studio/components/phtotoselection.html">
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name">Photo Selection</span>
+        </a>
+         <span class="tooltip">Photo Selection</span>
+      </li>
+      <li>
+       <a href="#">
+         <i class='bx bx-user' ></i>
+         <span class="links_name">eAlbum
+          <button class="button-coming-soon">Coming Soon </button>
+         </span>
+        
+       </a>
+       <span class="tooltip">eAlbum</span>
+     </li>
+     <li>
+       <a href="#">
+         <i class='bx bx-chat' ></i>
+         <span class="links_name">Messages
+          <button class="button-coming-soon">Coming Soon </button>
+         </span>
+       </a>
+       <span class="tooltip">Messages</span>
+     </li>
+     <li>
+       <a href="#">
+         <i class='bx bx-pie-chart-alt-2' ></i>
+         <span class="links_name">SharePhotos</span>
+         
+       </a>
+       <span class="tooltip">SharePhotos</span>
+     </li>
+     <li>
+       <a href="file:///C:/Users/vansh%20chauhan/Desktop/studio/components/wedding.html">
+         <i class='bx bx-folder' ></i>
+         <span class="links_name">My Profile</span>
+       </a>
+       <span class="tooltip">Profile</span>
+     </li>
+     <li>
+       <a href="#">
+         <i class='bx bx-cart-alt' ></i>
+         <span class="links_name">Invite & Earn
+          <button class="button-New">New </button>
+         </span>
+       </a>
+       <span class="tooltip">Invite & Earn</span>
+     </li>
+     <li>
+       <a href="file:///C:/Users/vansh%20chauhan/Desktop/studio/components/subscription.html">
+         <i class='bx bx-heart' ></i>
+         <span class="links_name">Subcription & Billing</span>
+       </a>
+       <span class="tooltip">Subcription & Billing</span>
+     </li>
+     <li>
+       <a href="#">
+         <i class='bx bx-cog' ></i>
+         <span class="links_name">Logout</span>
+       </a>
+       <span class="tooltip">Logout</span>
+     </li>
+     <li class="profile">
+         <div class="profile-details">
+           <img src="profile.jpg" alt="profileImg">
+           <div class="name_job">
+             <div class="name">Gajendra Singh</div>
+             <div class="job">gajendra3535vip@gmail.com</div>
+           </div>
+         </div>
+         <i class='bx bx-log-out' id="log_out" ></i>
+     </li>
+    </ul>
+  </div>
+  <section class="home-section">
+    <div class="wed-white">
+    <img src="c:\Users\vansh chauhan\Desktop\studio\assets\image\left-arrow.png" alt="" class="aroow-img">
+      <div class="text"><b>Wedding</b>
+    <p class="text-info">8 Folders</p></div>
+    <div class="button-add">
+        <button class="buttton-add-customer"> + Create New Folder</button>
+       </div></div>
+    <br>
+   
+     <div class="wrap">
+        <div class="box">
+          <div class="box-top">
+            <div class="icons-edit">
+            <i class="fa fa-edit" style="font-size:36px"></i>
+            <i class="fa fa-trash" style="font-size:36px;color:red"></i></div>
+            <img class="box-image" src="c:\Users\vansh chauhan\Desktop\studio\assets\image\Papirus-Team-Papirus-Places-Folder-blue.512.png" alt="Girl Eating Pizza">
+            
+              <h3 class="box-title">80d</h3>
+            
+    
+            
+          </div>
+         
+        </div>
+        <div class="box">
+          <div class="box-top">
+            <div class="icons-edit">
+                <i class="fa fa-edit" style="font-size:36px"></i>
+                <i class="fa fa-trash" style="font-size:36px;color:red"></i></div>
+            <img class="box-image" src="c:\Users\vansh chauhan\Desktop\studio\assets\image\Papirus-Team-Papirus-Places-Folder-blue.512.png" alt="Girl Eating Pizza">
+            <div class="title-flex">
+              <h3 class="box-title">Photo</h3>
+            
+            </div>
+            
+          </div>
+         
+        </div>
+        <div class="box">
+          <div class="box-top">
+            <div class="icons-edit">
+                <i class="fa fa-edit" style="font-size:36px"></i>
+                <i class="fa fa-trash" style="font-size:36px;color:red"></i></div>
+            <img class="box-image" src="c:\Users\vansh chauhan\Desktop\studio\assets\image\Papirus-Team-Papirus-Places-Folder-blue.512.png" alt="Girl Eating Pizza">
+            <div class="title-flex">
+              <h3 class="box-title">R 6 V+F</h3>
+            
+            </div>
+            
+          </div>
+         
+        </div><div class="box">
+          <div class="box-top">
+            <div class="icons-edit">
+                <i class="fa fa-edit" style="font-size:36px"></i>
+                <i class="fa fa-trash" style="font-size:36px;color:red"></i></div>
+            <img class="box-image" src="c:\Users\vansh chauhan\Desktop\studio\assets\image\Papirus-Team-Papirus-Places-Folder-blue.512.png" alt="Girl Eating Pizza">
+            <div class="title-flex">
+              <h3 class="box-title">Login Pic f alfa</h3>
+            
+            </div>
+            
+          </div>
+         
+        </div><div class="box">
+          <div class="box-top">
+            <div class="icons-edit">
+                <i class="fa fa-edit" style="font-size:36px"></i>
+                <i class="fa fa-trash" style="font-size:36px;color:red"></i></div>
+            <img class="box-image" src="c:\Users\vansh chauhan\Desktop\studio\assets\image\Papirus-Team-Papirus-Places-Folder-blue.512.png" alt="Girl Eating Pizza">
+            <div class="title-flex">
+              <h3 class="box-title">Photo lagan</h3>
+            
+            </div>
+            
+          </div>
+         
+        </div>
+        <div class="box">
+          <div class="box-top">
+            <div class="icons-edit">
+                <i class="fa fa-edit" style="font-size:36px"></i>
+                <i class="fa fa-trash" style="font-size:36px;color:red"></i></div>
+            <img class="box-image" src="c:\Users\vansh chauhan\Desktop\studio\assets\image\Papirus-Team-Papirus-Places-Folder-blue.512.png" alt="Girl Eating Pizza">
+            <div class="title-flex">
+              <h3 class="box-title">Devta</h3>
+             
+            </div>
+            
+          </div>
+      
+        </div>
+        <div class="box">
+          <div class="box-top">
+            <div class="icons-edit">
+                <i class="fa fa-edit" style="font-size:36px"></i>
+                <i class="fa fa-trash" style="font-size:36px;color:red"></i></div>
+            <img class="box-image" src="c:\Users\vansh chauhan\Desktop\studio\assets\image\Papirus-Team-Papirus-Places-Folder-blue.512.png" alt="Girl Eating Pizza">
+            <div class="title-flex">
+              <h3 class="box-title">New Folder 675</h3>
+              
+            </div>
+           
+          </div>
+         
+        </div>
+        <div class="box">
+          <div class="box-top">
+            <div class="icons-edit">
+                <i class="fa fa-edit" style="font-size:36px"></i>
+                <i class="fa fa-trash" style="font-size:36px;color:red"></i></div>
+            <img class="box-image" src="c:\Users\vansh chauhan\Desktop\studio\assets\image\Papirus-Team-Papirus-Places-Folder-blue.512.png" alt="Girl Eating Pizza">
+            <div class="title-flex">
+              <h3 class="box-title">New Folder 147</h3>
+             
+            </div>
+            
+          </div>
+         
+        </div>
+      </div>
+      
+      </div>
+    
+    
+    
+  </section>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <script>
+  let sidebar = document.querySelector(".sidebar");
+  let closeBtn = document.querySelector("#btn");
+  let searchBtn = document.querySelector(".bx-search");
+
+  closeBtn.addEventListener("click", ()=>{
+    sidebar.classList.toggle("open");
+    menuBtnChange();//calling the function(optional)
+  });
+
+  searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the search iocn
+    sidebar.classList.toggle("open");
+    menuBtnChange(); //calling the function(optional)
+  });
+
+  // following are the code to change sidebar button(optional)
+  function menuBtnChange() {
+   if(sidebar.classList.contains("open")){
+     closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
+   }else {
+     closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
+   }
+  }
+  </script>
+</body>
+</html>

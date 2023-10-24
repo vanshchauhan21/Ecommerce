@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    /* Google Font Link */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins" , sans-serif;
+}
+.sidebar{
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 78px;
+  background: #10101d;
+  padding: 6px 14px;
+  z-index: 99;
+  transition: all 0.5s ease;
+}
+.sidebar.open{
+  width: 250px;
+}
+.sidebar .logo-details{
+  height: 60px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.sidebar .logo-details .icon{
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+.sidebar .logo-details .logo_name{
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+.sidebar.open .logo-details .icon,
+.sidebar.open .logo-details .logo_name{
+  opacity: 1;
+}
+.sidebar .logo-details #btn{
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  font-size: 22px;
+  transition: all 0.4s ease;
+  font-size: 23px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.sidebar.open .logo-details #btn{
+  text-align: right;
+}
+.sidebar i{
+  color: #fff;
+  height: 60px;
+  min-width: 50px;
+  font-size: 28px;
+  text-align: center;
+  line-height: 60px;
+}
+.sidebar .nav-list {
+  margin-top: 20px;
+  height: 100%;
+  margin-left: -48px;
+}
+.sidebar li{
+  position: relative;
+  margin: 8px 0;
+  list-style: none;
+}
+.sidebar li .tooltip{
+  position: absolute;
+  top: -20px;
+  left: calc(100% + 15px);
+  z-index: 3;
+  background: #fff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 400;
+  opacity: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: 0s;
+}
+.sidebar li:hover .tooltip{
+  opacity: 1;
+  pointer-events: auto;
+  transition: all 0.4s ease;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.sidebar.open li .tooltip{
+  display: none;
+}
+.sidebar input{
+  font-size: 15px;
+  color: #FFF;
+  font-weight: 400;
+  outline: none;
+  height: 50px;
+  width: 100%;
+  width: 50px;
+  border: none;
+  border-radius: 12px;
+  transition: all 0.5s ease;
+  background: #1d1b31;
+}
+.sidebar.open input{
+  padding: 0 20px 0 50px;
+  width: 100%;
+}
+.sidebar .bx-search{
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  font-size: 22px;
+  background: #1d1b31;
+  color: #FFF;
+}
+.sidebar.open .bx-search:hover{
+  background: #1d1b31;
+  color: #FFF;
+}
+.sidebar .bx-search:hover{
+  background: #FFF;
+  color: #11101d;
+}
+.sidebar li a{
+  display: flex;
+  height: 100%;
+  width: 100%;
+  border-radius: 12px;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  background: #11101D;
+}
+.sidebar li a:hover{
+  background: #FFF;
+}
+.sidebar li a .links_name{
+  color: #fff;
+  font-size: 15px;
+  font-weight: 400;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.4s;
+}
+.sidebar.open li a .links_name{
+  opacity: 1;
+  pointer-events: auto;
+}
+.sidebar li a:hover .links_name,
+.sidebar li a:hover i{
+  transition: all 0.5s ease;
+  color: #11101D;
+}
+.sidebar li i{
+  height: 50px;
+  line-height: 50px;
+  font-size: 18px;
+  border-radius: 12px;
+}
+.sidebar li.profile{
+  position: fixed;
+  height: 60px;
+  width: 78px;
+  left: 0;
+  bottom: -8px;
+  padding: 10px 14px;
+  background: #1d1b31;
+  transition: all 0.5s ease;
+  overflow: hidden;
+}
+.sidebar.open li.profile{
+  width: 250px;
+}
+.sidebar li .profile-details{
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+.sidebar li img{
+  height: 45px;
+  width: 45px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-right: 10px;
+}
+.sidebar li.profile .name,
+.sidebar li.profile .job{
+  font-size: 15px;
+  font-weight: 400;
+  color: #fff;
+  white-space: nowrap;
+}
+.sidebar li.profile .job{
+  font-size: 12px;
+}
+.sidebar .profile #log_out{
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  background: #1d1b31;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  border-radius: 0px;
+  transition: all 0.5s ease;
+}
+.sidebar.open .profile #log_out{
+  width: 50px;
+  background: none;
+}
+.home-section{
+  position: relative;
+  background: #E4E9F7;
+  min-height: 100vh;
+  top: 0;
+  left: 78px;
+  width: calc(100% - 78px);
+  transition: all 0.5s ease;
+  z-index: 2;
+}
+.sidebar.open ~ .home-section{
+  left: 250px;
+  width: calc(100% - 250px);
+}
+.home-section .text{
+  display: inline-block;
+  color: #11101d;
+  font-size: 25px;
+  font-weight: 500;
+  margin: 18px
+}
+@media (max-width: 420px) {
+  .sidebar li .tooltip{
+    display: none;
+  }
+}
+.text-info{
+    font-size: 12px;
+    color: rgb(163, 147, 147);
+}
+.search-barr{
+    width: 70%;
+}
+.button-add {
+  display: flex;
+  flex-direction: row-reverse;
+  align-content: space-between;
+  align-items: baseline;
+  justify-content: space-between;
+  color: whitesmoke;
+}
+.buttton-add-customer{
+  background-color: #10101d;
+  color: whitesmoke;
+  height: 40px;
+  width: 250px;
+  margin-right: 68px;
+  border-radius: 20px;
+  font-size: 20px;
+}
+
+  .input-w {
+    width: 800px;
+    height: 35px;
+    margin-left: 56px;
+    border-radius: 15px;
+}
+.content-name
+
+
+ {
+  margin-left: 55px;
+  background-color: white;
+  border-radius: 28px;
+  height: 779px;
+  margin-right:40px ;
+}
+.button-coming-soon{
+  width: 113px;
+  border-radius: 10px;
+  margin-left: 4px;
+  background-color: rgb(107, 225, 204);
+}
+.button-New{
+  width: 60px;
+  border-radius: 10px;
+  margin-left: 8px;
+  background-color: yellow;
+}
+:root {
+	--color-white: #ffffff;
+	--color-light: #f1f5f9;
+	--color-black: #121212;
+	--color-night: #001632;
+
+	--color-red: #f44336;
+	--color-blue: #1a73e8;
+	--color-gray: #80868b;
+	--color-grayish: #dadce0;
+
+	--shadow-normal: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+		0 1px 2px 0 rgba(0, 0, 0, 0.06);
+	--shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+		0 2px 4px -1px rgba(0, 0, 0, 0.06);
+	--shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+		0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+html {
+	font-size: 100%;
+	font-size-adjust: 100%;
+	box-sizing: border-box;
+	scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+	padding: 0;
+	margin: 0;
+	box-sizing: inherit;
+	list-style: none;
+	list-style-type: none;
+	text-decoration: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility;
+}
+
+body {
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	font-size: 1rem;
+	font-weight: normal;
+	line-height: 1.5;
+	color: var(--color-black);
+	background: var(--color-light);
+}
+
+a,
+button {
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
+	cursor: pointer;
+	border: none;
+	outline: none;
+	background: none;
+	text-decoration: none;
+}
+
+img {
+	display: block;
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+}
+
+
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	max-width: 80rem;
+	min-height: 100vh;
+	width: 100%;
+	padding: 0 2rem;
+	margin: 0 auto;
+}
+
+.ion {
+	&-logo-apple {
+		font-size: 1.65rem;
+		line-height: inherit;
+		margin-right: 0.5rem;
+		color: var(--color-black);
+	}
+	&-logo-google {
+		font-size: 1.65rem;
+		line-height: inherit;
+		margin-right: 0.5rem;
+		color: var(--color-red);
+	}
+	&-logo-facebook {
+		font-size: 1.65rem;
+		line-height: inherit;
+		margin-right: 0.5rem;
+		color: var(--color-blue);
+	}
+}
+
+.text {
+	font-family: inherit;
+	line-height: inherit;
+	text-transform: unset;
+	text-rendering: optimizeLegibility;
+  margin-left: 45px;
+
+	&-large {
+		font-size: 2rem;
+		font-weight: 600;
+		color: var(--color-black);
+	}
+
+	&-normal {
+		font-size: 1rem;
+		font-weight: 400;
+		color: var(--color-black);
+	}
+
+	&-links {
+		font-size: 1rem;
+		font-weight: 400;
+		color: var(--color-blue);
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
+
+.main {
+	.wrapper {
+		max-width: 28rem;
+		width: 100%;
+		margin: 2rem auto;
+		padding: 2rem 2.5rem;
+		border: none;
+		outline: none;
+		border-radius: 0.25rem;
+		color: var(--color-black);
+		background: var(--color-white);
+		box-shadow: var(--shadow-large);
+
+		.form {
+			width: 100%;
+			height: auto;
+			margin-top: 2rem;
+
+			.input-control {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				margin-bottom: 1.25rem;
+			}
+
+			.input-field {
+				font-family: inherit;
+				font-size: 1rem;
+				font-weight: 400;
+				line-height: inherit;
+				width: 100%;
+				height: auto;
+				padding: 0.75rem 1.25rem;
+				border: none;
+				outline: none;
+				border-radius: 2rem;
+				color: var(--color-black);
+				background: var(--color-light);
+				text-transform: unset;
+				text-rendering: optimizeLegibility;
+			}
+
+			.input-submit {
+				font-family: inherit;
+				font-size: 1rem;
+				font-weight: 500;
+				line-height: inherit;
+				cursor: pointer;
+				min-width: 40%;
+				height: auto;
+				padding: 0.65rem 1.25rem;
+				border: none;
+				outline: none;
+				border-radius: 2rem;
+				color: var(--color-white);
+				background: var(--color-blue);
+				box-shadow: var(--shadow-medium);
+				text-transform: capitalize;
+				text-rendering: optimizeLegibility;
+			}
+		}
+
+		.striped {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+			margin: 1rem 0;
+
+			&-line {
+				flex: auto;
+				flex-basis: auto;
+				border: none;
+				outline: none;
+				height: 2px;
+				background: var(--color-grayish);
+			}
+
+			&-text {
+				font-family: inherit;
+				font-size: 1rem;
+				font-weight: 500;
+				line-height: inherit;
+				color: var(--color-black);
+				margin: 0 1rem;
+			}
+		}
+
+		.method {
+			&-control {
+				margin-bottom: 1rem;
+			}
+
+			&-action {
+				font-family: inherit;
+				font-size: 0.95rem;
+				font-weight: 500;
+				line-height: inherit;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 100%;
+				height: auto;
+				padding: 0.35rem 1.25rem;
+				outline: none;
+				border: 2px solid var(--color-grayish);
+				border-radius: 2rem;
+				color: var(--color-black);
+				background: var(--color-white);
+				text-transform: capitalize;
+				text-rendering: optimizeLegibility;
+				transition: all 0.35s ease;
+
+				&:hover {
+					background: var(--color-light);
+				}
+			}
+		}
+	}
+}
+.input-w {
+    width:80vh;
+    height: 35px;
+    margin-left: 56px;
+    border-radius: 15px;
+}
+.bttn-whatsapp{
+  width:350px;
+  
+  border-radius: 30px;
+}
+.camera-img{
+  width: 10vh;
+  height: 10vh;
+  margin-left: 138px;
+
+}
+</style>
+<body>
+    <section class="home-section">
+        <div class="text"><b>Wedding</b>
+      <p class="text-info">8 Folders</p></div>
+      <div class="button-add">
+        <button class="buttton-add-customer"> + Create New Folder</button>
+       </div><br>
+      <div>
+          <input type="text" placeholder="Search" class="input-w">
+      </div>
+      <br>
+      
+    </section>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+      }
+      
+      :root {
+        --purple: hsl(240, 80%, 89%);
+        --pink: hsl(0, 59%, 94%);
+        --light-bg: hsl(204, 37%, 92%);
+        --light-gray-bg: hsl(0, 0%, 94%);
+        --white: hsl(0, 0%, 100%);
+        --dark: hsl(0, 0%, 7%);
+        --text-gray: hsl(0, 0%, 30%);
+      }
+      
+      body {
+        background: var(--light-bg);
+        font-family: "Space Grotesk", sans-serif;
+        color: var(--dark);
+      }
+      
+      h3 {
+        font-size: 1.5em;
+        font-weight: 700;
+      }
+      
+      p {
+        font-size: 1em;
+        line-height: 1.7;
+        font-weight: 300;
+        color: var(--text-gray);
+      }
+      
+      .description {
+        white-space: wrap;
+      }
+      
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      
+      .wrap {
+        display: flex;
+        justify: space-between;
+        align-items: stretch;
+        width: 100%;
+        gap: 24px;
+        padding: 24px;
+        flex-wrap: wrap;
+      }
+      
+      .box {
+        display: flex;
+        flex-direction: column;
+        flex-basis: 100%;
+        position: relative;
+        padding: 24px;
+        background: #fff;
+      }
+      
+      .box-top {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        gap: 12px;
+        margin-bottom: 36px;
+      }
+      
+      .box-image {
+        width: 100%;
+        height: 360px;
+        object-fit: cover;
+        object-position: 50% 20%;
+      }
+      
+      .title-flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .box-title {
+        border-left: 3px solid var(--purple);
+        padding-left: 12px;
+      }
+      
+      .user-follow-info {
+        color: hsl(0, 0%, 60%);
+      }
+      
+      .button {
+        display: block;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-top: auto;
+        padding: 16px;
+        color: #000;
+        background: transparent;
+        box-shadow: 0px 0px 0px 1px black inset;
+        transition: background 0.4s ease;
+      }
+      
+      .button:hover {
+        background: var(--purple);
+      }
+      
+      .fill-one {
+        background: var(--light-bg);
+      }
+      
+      .fill-two {
+        background: var(--pink);
+      }
+      
+      /* RESPONSIVE QUERIES */
+      
+      @media (min-width: 320px) {
+        .title-flex {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: start;
+        }
+        .user-follow-info {
+          margin-top: 6px;
+        }
+      }
+      
+      @media (min-width: 460px) {
+        .title-flex {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: start;
+        }
+        .user-follow-info {
+          margin-top: 6px;
+        }
+      }
+      
+      @media (min-width: 640px) {
+        .box {
+          flex-basis: calc(50% - 12px);
+        }
+        .title-flex {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: start;
+        }
+        .user-follow-info {
+          margin-top: 6px;
+        }
+      }
+      
+      @media (min-width: 840px) {
+        .title-flex {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: start;
+        }
+        .user-follow-info {
+          margin-top: 6px;
+        }
+      }
+      
+      @media (min-width: 1024px) {
+        .box {
+          flex-basis: calc(33.3% - 16px);
+        }
+        .title-flex {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: start;
+        }
+        .user-follow-info {
+          margin-top: 6px;
+        }
+      }
+      
+      @media (min-width: 1100px) {
+        .box {
+          flex-basis: calc(25% - 18px);
+        }
+      }
+      
+</style>
+<body>
+    <div class="wrap">
+  <div class="box">
+    <div class="box-top">
+      <img class="box-image" src="c:\Users\vansh chauhan\Desktop\studio\assets\image\Papirus-Team-Papirus-Places-Folder-blue.512.png" alt="Girl Eating Pizza">
+      <div class="title-flex">
+        <h3 class="box-title">Kelsie Meyer</h3>
+      
+      </div>
+      
+    </div>
+   
+  </div>
+  <div class="box">
+    <div class="box-top">
+      <img class="box-image" src="c:\Users\vansh chauhan\Desktop\studio\assets\image\Papirus-Team-Papirus-Places-Folder-blue.512.png" alt="Girl Eating Pizza">
+      <div class="title-flex">
+        <h3 class="box-title">Kelsie Meyer</h3>
+      
+      </div>
+      
+    </div>
+   
+  </div>
+  <div class="box">
+    <div class="box-top">
+      <img class="box-image" src="c:\Users\vansh chauhan\Desktop\studio\assets\image\Papirus-Team-Papirus-Places-Folder-blue.512.png" alt="Girl Eating Pizza">
+      <div class="title-flex">
+        <h3 class="box-title">Kelsie Meyer</h3>
+      
+      </div>
+      
+    </div>
+   
+  </div><div class="box">
+    <div class="box-top">
+      <img class="box-image" src="c:\Users\vansh chauhan\Desktop\studio\assets\image\Papirus-Team-Papirus-Places-Folder-blue.512.png" alt="Girl Eating Pizza">
+      <div class="title-flex">
+        <h3 class="box-title">Kelsie Meyer</h3>
+      
+      </div>
+      
+    </div>
+   
+  </div><div class="box">
+    <div class="box-top">
+      <img class="box-image" src="c:\Users\vansh chauhan\Desktop\studio\assets\image\Papirus-Team-Papirus-Places-Folder-blue.512.png" alt="Girl Eating Pizza">
+      <div class="title-flex">
+        <h3 class="box-title">Kelsie Meyer</h3>
+      
+      </div>
+      
+    </div>
+   
+  </div>
+  <div class="box">
+    <div class="box-top">
+      <img class="box-image" src="c:\Users\vansh chauhan\Desktop\studio\assets\image\Papirus-Team-Papirus-Places-Folder-blue.512.png" alt="Girl Eating Pizza">
+      <div class="title-flex">
+        <h3 class="box-title">Mark Carusso</h3>
+       
+      </div>
+      
+    </div>
+
+  </div>
+  <div class="box">
+    <div class="box-top">
+      <img class="box-image" src="c:\Users\vansh chauhan\Desktop\studio\assets\image\Papirus-Team-Papirus-Places-Folder-blue.512.png" alt="Girl Eating Pizza">
+      <div class="title-flex">
+        <h3 class="box-title">Taylor Green</h3>
+        
+      </div>
+     
+    </div>
+   
+  </div>
+  <div class="box">
+    <div class="box-top">
+      <img class="box-image" src="c:\Users\vansh chauhan\Desktop\studio\assets\image\Papirus-Team-Papirus-Places-Folder-blue.512.png" alt="Girl Eating Pizza">
+      <div class="title-flex">
+        <h3 class="box-title">Isaiah Jian</h3>
+       
+      </div>
+      
+    </div>
+   
+  </div>
+</div>
+
+</div>
+</body>
+</html>
